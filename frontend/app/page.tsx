@@ -5,6 +5,8 @@ import { Download, Sparkles, AlertCircle } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
 import FormatSelector from "@/components/FormatSelector";
 import SEOContent from "@/components/SEOContent";
+import ConversionCounter from "@/components/ConversionCounter";
+import ShareButtons from "@/components/ShareButtons";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -82,6 +84,11 @@ export default function Home() {
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
+
+      // Increment conversion counter
+      if (typeof window !== 'undefined' && (window as any).incrementConversionCounter) {
+        (window as any).incrementConversionCounter();
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Conversion failed");
     } finally {
@@ -94,13 +101,18 @@ export default function Home() {
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-6 py-6">
-          <div className="flex items-center gap-3">
-            <Sparkles className="w-8 h-8 text-primary-dark" />
-            <h1 className="text-3xl font-bold text-foreground">ThreadShifter</h1>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-8 h-8 text-primary-dark" />
+                <h1 className="text-3xl font-bold text-foreground">ThreadShifter</h1>
+              </div>
+              <p className="text-foreground/70 mt-2">
+                Free, instant embroidery file converter
+              </p>
+            </div>
+            <ConversionCounter />
           </div>
-          <p className="text-foreground/70 mt-2">
-            Free, instant embroidery file converter
-          </p>
         </div>
       </header>
 
@@ -173,6 +185,13 @@ export default function Home() {
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Social Share Section */}
+      <div className="border-t border-border bg-card/20 py-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <ShareButtons />
         </div>
       </div>
 
