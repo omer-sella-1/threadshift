@@ -1,4 +1,4 @@
-# Project: ThreadShift (Embroidery File Converter)
+# Project: ThreadShifter (Embroidery File Converter)
 
 ## 1. Project Overview
 **Mission:** Build a free, web-based tool that allows users (crafters/makers) to instantly convert embroidery machine files (e.g., .DST to .PES) without installing expensive software.

@@ -1,10 +1,10 @@
-# ThreadShift
+# ThreadShifter
 
 **Free, instant embroidery file converter** - Convert embroidery machine files without installing expensive software.
 
 ## Overview
 
-ThreadShift is a web-based tool that allows crafters and makers to convert embroidery files between different machine formats (DST, PES, JEF, EXP, XXX, VP3, U01, PEC) instantly and privately.
+ThreadShifter is a web-based tool that allows crafters and makers to convert embroidery files between different machine formats (DST, PES, JEF, EXP, XXX, VP3, U01, PEC) instantly and privately.
 
 ### Core Values
 - **Simplicity**: Drag, drop, convert - done in under a minute

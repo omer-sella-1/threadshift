@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Download, Sparkles, AlertCircle } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
 import FormatSelector from "@/components/FormatSelector";
+import SEOContent from "@/components/SEOContent";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -95,7 +96,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 py-6">
           <div className="flex items-center gap-3">
             <Sparkles className="w-8 h-8 text-primary-dark" />
-            <h1 className="text-3xl font-bold text-foreground">ThreadShift</h1>
+            <h1 className="text-3xl font-bold text-foreground">ThreadShifter</h1>
           </div>
           <p className="text-foreground/70 mt-2">
             Free, instant embroidery file converter
@@ -173,6 +174,11 @@ export default function Home() {
             </div>
           )}
         </div>
+      </div>
+
+      {/* SEO Content - FAQ and Format Info */}
+      <div className="border-t border-border bg-background">
+        <SEOContent />
       </div>
 
       {/* Footer */}

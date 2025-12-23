@@ -1,5 +1,5 @@
 """
-FastAPI backend for ThreadShift embroidery file converter.
+FastAPI backend for ThreadShifter embroidery file converter.
 Provides a simple REST API for converting embroidery files.
 """
 
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="ThreadShift API",
+    title="ThreadShifter API",
     description="Convert embroidery machine files instantly",
     version="1.0.0",
 )
@@ -44,7 +44,7 @@ async def root():
     """Health check endpoint."""
     return {
         "status": "ok",
-        "service": "ThreadShift API",
+        "service": "ThreadShifter API",
         "version": "1.0.0",
     }
 

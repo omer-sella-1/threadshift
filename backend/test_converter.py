@@ -76,7 +76,7 @@ def test_conversion(source_format: str, target_format: str, test_data: bytes):
 def main():
     """Run all conversion tests."""
     print("\n" + "="*60)
-    print("ThreadShift Embroidery Converter - Local Test")
+    print("ThreadShifter Embroidery Converter - Local Test")
     print("="*60)
 
     # Create test pattern
