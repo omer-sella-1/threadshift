@@ -110,7 +110,7 @@ export default function EmbroideryChallengesPage() {
             Poor conversion quality can ruin designs - dropped stitches, wrong thread counts, corrupted files. Some free converters produce unreliable results that waste time and materials.
           </p>
           <p className="text-foreground/80 leading-relaxed mt-4">
-            <strong>ThreadShifter Quality:</strong> We use pyembroidery, the gold standard open-source library for embroidery file processing. It's the same technology used by professional software but available to you completely free. Conversions are fast (< 2ms) and reliable.
+            <strong>ThreadShifter Quality:</strong> We use pyembroidery, the gold standard open-source library for embroidery file processing. It's the same technology used by professional software but available to you completely free. Conversions are fast (&lt; 2ms) and reliable.
           </p>
 
           <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">Platform Limitations</h2>
