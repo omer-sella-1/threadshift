@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  /* Pastel crafty colors - light mode */
+  --background: #fef9f3;
+  --foreground: #2d2d2d;
+  --primary: #e8b4b4;
+  --primary-dark: #d89b9b;
+  --secondary: #b4d4e8;
+  --accent: #d4b4e8;
+  --success: #b4e8d4;
+  --border: #e8d4c4;
+  --card: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-card: var(--card);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
