@@ -7,6 +7,7 @@ import FormatSelector from "@/components/FormatSelector";
 import SEOContent from "@/components/SEOContent";
 import ConversionCounter from "@/components/ConversionCounter";
 import ShareButtons from "@/components/ShareButtons";
+import { track } from "@vercel/analytics";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -84,6 +85,13 @@ export default function Home() {
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
+
+      // Track conversion event
+      track('Conversion', {
+        source_format: file.name.split('.').pop() || 'unknown',
+        target_format: targetFormat,
+        file_size: file.size,
+      });
 
       // Increment conversion counter
       if (typeof window !== 'undefined' && (window as any).incrementConversionCounter) {
