@@ -86,12 +86,23 @@ export default function Home() {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
 
-      // Track conversion event
+      // Track conversion event in Vercel Analytics
       track('Conversion', {
         source_format: file.name.split('.').pop() || 'unknown',
         target_format: targetFormat,
         file_size: file.size,
       });
+
+      // Track conversion event in Google Analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          event_category: 'Embroidery Conversion',
+          event_label: `${file.name.split('.').pop()?.toUpperCase()} to ${targetFormat.toUpperCase()}`,
+          source_format: file.name.split('.').pop() || 'unknown',
+          target_format: targetFormat,
+          file_size_kb: Math.round(file.size / 1024),
+        });
+      }
 
       // Increment conversion counter
       if (typeof window !== 'undefined' && (window as any).incrementConversionCounter) {
