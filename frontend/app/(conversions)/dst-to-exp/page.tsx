@@ -28,9 +28,10 @@ export default function DSTtoEXPPage() {
       </header>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-12">
-        {/* CTA */}
-        <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
+      <div className="py-12 px-6">
+        <div className="max-w-4xl mx-auto bg-white border-2 border-black shadow-brutal-lg p-8 md:p-12 space-y-12">
+          {/* CTA */}
+          <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
           <h2 className="text-xl font-bold uppercase tracking-wide mb-4">
             PROFESSIONAL DST TO MELCO CONVERSION
           </h2>
@@ -115,6 +116,7 @@ export default function DSTtoEXPPage() {
             </Link>
           </div>
         </section>
+        </div>
       </div>
 
       {/* Footer */}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function EmbroideryChallengesPage() {
   return (
-    <main className="min-h-screen bg-[#f0ebe3]">
+    <main className="min-h-screen">
       <header className="border-b-2 border-black bg-white">
         <div className="max-w-4xl mx-auto px-6 py-6">
           <Link href="/" className="inline-flex items-center gap-2 text-black hover:text-cyan-500 transition-colors mb-4 font-bold uppercase text-sm">
@@ -26,8 +26,9 @@ export default function EmbroideryChallengesPage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-12">
-        <section className="prose prose-lg max-w-none">
+      <div className="py-12 px-6">
+        <div className="max-w-4xl mx-auto bg-white border-2 border-black shadow-brutal-lg p-8 md:p-12 space-y-12">
+          <section className="prose prose-lg max-w-none">
           <h2 className="text-3xl font-black text-black mb-6 uppercase tracking-tight border-l-4 border-cyan-400 pl-4">The File Compatibility Problem</h2>
           <p className="text-black/80 leading-relaxed font-medium">
             One of the most frustrating challenges in machine embroidery is file format incompatibility. You've found the perfect design online, purchased it or downloaded it for free, only to discover it's in the wrong format for your machine. Your Brother needs PES, but the design is in DST. Your Janome requires JEF, but all you have is EXP.
@@ -136,6 +137,7 @@ export default function EmbroideryChallengesPage() {
           <Link href="/" className="inline-block px-8 py-4 bg-black text-white font-black uppercase tracking-tight hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-brutal-sm transition-all">
             Start Converting Now →
           </Link>
+        </div>
         </div>
       </div>
 

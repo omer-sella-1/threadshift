@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function EmbroideryFormatsGuidePage() {
   return (
-    <main className="min-h-screen bg-[#f0ebe3]">
+    <main className="min-h-screen">
       <header className="border-b-2 border-black bg-white">
         <div className="max-w-4xl mx-auto px-6 py-6">
           <Link href="/" className="inline-flex items-center gap-2 text-black hover:text-cyan-500 transition-colors mb-4 font-bold uppercase text-sm">
@@ -26,8 +26,9 @@ export default function EmbroideryFormatsGuidePage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-12">
-        <section className="prose prose-lg max-w-none">
+      <div className="py-12 px-6">
+        <div className="max-w-4xl mx-auto bg-white border-2 border-black shadow-brutal-lg p-8 md:p-12 space-y-12">
+          <section className="prose prose-lg max-w-none">
           <h2 className="text-3xl font-black text-black mb-6 uppercase tracking-tight border-l-4 border-cyan-400 pl-4">Understanding Embroidery File Formats</h2>
           <p className="text-black/80 leading-relaxed font-medium">
             Machine embroidery uses specialized file formats to store design information. Unlike regular image files (JPG, PNG), embroidery files contain stitch-by-stitch instructions that tell the machine exactly where to place each needle drop, what color thread to use, and how to move between design elements. Understanding these formats is crucial for anyone working with machine embroidery.
@@ -146,6 +147,7 @@ export default function EmbroideryFormatsGuidePage() {
           <Link href="/" className="inline-block px-8 py-4 bg-black text-white font-black uppercase tracking-tight hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-brutal-sm transition-all">
             Try ThreadShifter Free →
           </Link>
+        </div>
         </div>
       </div>
 
