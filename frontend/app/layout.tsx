@@ -15,10 +15,10 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.threadshifter.com'),
   title: {
-    default: 'ThreadShifter - Free Embroidery File Converter Online | DST to PES Converter',
+    default: 'ThreadShifter - Free Embroidery File Converter | DST to PES Online',
     template: '%s | ThreadShifter'
   },
-  description: 'Convert embroidery files instantly for free. Support for DST, PES, EXP, JEF, XXX, VP3, U01, PEC formats. No software installation, no account needed. Fast, private, and secure online embroidery file conversion.',
+  description: 'Free embroidery file converter. Instantly convert DST, PES, JEF, EXP formats. No software needed. Fast, private, secure conversion online.',
   keywords: [
     'embroidery file converter',
     'DST to PES converter',

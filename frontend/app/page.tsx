@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Download, Terminal, AlertCircle, CheckCircle2 } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
 import FormatSelector from "@/components/FormatSelector";
@@ -255,6 +256,49 @@ export default function Home() {
             </div>
           )}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Popular Conversions - Internal Links */}
+      <div className="border-t-2 border-black bg-[#f0ebe3] py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-xl font-bold uppercase tracking-wider mb-8 border-l-4 border-cyan-400 pl-4">
+            POPULAR_CONVERSIONS
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link href="/dst-to-pes" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">DST → PES</div>
+              <div className="text-xs opacity-70 mt-1">Tajima to Brother</div>
+            </Link>
+            <Link href="/pes-to-dst" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">PES → DST</div>
+              <div className="text-xs opacity-70 mt-1">Brother to Tajima</div>
+            </Link>
+            <Link href="/jef-to-pes" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">JEF → PES</div>
+              <div className="text-xs opacity-70 mt-1">Janome to Brother</div>
+            </Link>
+            <Link href="/exp-to-dst" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">EXP → DST</div>
+              <div className="text-xs opacity-70 mt-1">Melco to Tajima</div>
+            </Link>
+            <Link href="/dst-to-jef" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">DST → JEF</div>
+              <div className="text-xs opacity-70 mt-1">Tajima to Janome</div>
+            </Link>
+            <Link href="/pes-to-jef" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">PES → JEF</div>
+              <div className="text-xs opacity-70 mt-1">Brother to Janome</div>
+            </Link>
+            <Link href="/embroidery-file-formats" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">FILE FORMATS</div>
+              <div className="text-xs opacity-70 mt-1">Complete Guide</div>
+            </Link>
+            <Link href="/embroidery-challenges" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm text-center">
+              <div className="font-bold text-sm">CHALLENGES</div>
+              <div className="text-xs opacity-70 mt-1">Solutions Guide</div>
+            </Link>
           </div>
         </div>
       </div>
