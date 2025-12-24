@@ -9,28 +9,40 @@ export default function ConversionCounter() {
   const [count, setCount] = useState(BASE_COUNT);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // Fetch global count on mount
   useEffect(() => {
-    // Get stored count from localStorage
-    const stored = localStorage.getItem('threadshifter_conversions');
-    if (stored) {
-      setCount(parseInt(stored));
-    }
+    fetch('/api/counter')
+      .then(res => res.json())
+      .then(data => setCount(data.count))
+      .catch(() => setCount(BASE_COUNT)); // Fallback on error
   }, []);
 
-  const incrementCounter = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    localStorage.setItem('threadshifter_conversions', newCount.toString());
-
-    // Trigger animation
+  const incrementCounter = async () => {
+    // Trigger animation immediately for better UX
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 500);
+
+    try {
+      // Increment global counter
+      const response = await fetch('/api/counter/increment', {
+        method: 'POST',
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        setCount(data.count);
+      }
+    } catch (error) {
+      console.error('Failed to increment counter:', error);
+      // Optimistic update even if API fails
+      setCount(prev => prev + 1);
+    }
   };
 
   // Expose increment function globally for the main page
   useEffect(() => {
     (window as any).incrementConversionCounter = incrementCounter;
-  }, [count]);
+  }, []);
 
   // Format number with commas
   const formatNumber = (num: number) => {
