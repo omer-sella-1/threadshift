@@ -4,16 +4,29 @@ import { useEffect, useState } from "react";
 import { TrendingUp } from "lucide-react";
 
 const BASE_COUNT = 1583;
+const CACHE_KEY = 'threadshifter_last_count';
+
+// Get initial count from localStorage cache to avoid flash
+function getInitialCount(): number {
+  if (typeof window === 'undefined') return BASE_COUNT;
+
+  const cached = localStorage.getItem(CACHE_KEY);
+  return cached ? parseInt(cached) : BASE_COUNT;
+}
 
 export default function ConversionCounter() {
-  const [count, setCount] = useState(BASE_COUNT);
+  const [count, setCount] = useState(getInitialCount);
   const [isAnimating, setIsAnimating] = useState(false);
 
   // Fetch global count on mount
   useEffect(() => {
     fetch('/api/counter')
       .then(res => res.json())
-      .then(data => setCount(data.count))
+      .then(data => {
+        setCount(data.count);
+        // Cache for next page load
+        localStorage.setItem(CACHE_KEY, data.count.toString());
+      })
       .catch(() => setCount(BASE_COUNT)); // Fallback on error
   }, []);
 
@@ -31,6 +44,8 @@ export default function ConversionCounter() {
 
       if (data.success) {
         setCount(data.count);
+        // Update cache
+        localStorage.setItem(CACHE_KEY, data.count.toString());
       }
     } catch (error) {
       console.error('Failed to increment counter:', error);
