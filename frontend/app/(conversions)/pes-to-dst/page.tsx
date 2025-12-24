@@ -10,45 +10,49 @@ export const metadata: Metadata = {
 
 export default function PEStoDSTPage() {
   return (
-    <main className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto px-6 py-6">
-          <Link href="/" className="inline-flex items-center gap-2 text-primary-dark hover:text-primary transition-colors mb-4">
-            <Home className="w-4 h-4" />
-            <span className="text-sm">Back to Converter</span>
+    <main className="min-h-screen">
+      {/* Header */}
+      <header className="border-b-2 border-black bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-6">
+          <Link href="/" className="inline-flex items-center gap-2 hover:text-cyan-400 transition-colors mb-4 text-sm uppercase tracking-wide">
+            <Home className="w-4 h-4" strokeWidth={2} />
+            <span>BACK_TO_CONVERTER</span>
           </Link>
-          <h1 className="text-4xl font-bold text-foreground">
-            Convert PES to DST Online Free
+          <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">
+            PES → DST // CONVERT
           </h1>
-          <p className="text-foreground/70 mt-3 text-lg">
-            Transform Brother PES files to Tajima DST format instantly
+          <p className="mt-3 text-sm uppercase tracking-wider opacity-70">
+            BROTHER TO TAJIMA CONVERSION
           </p>
         </div>
       </header>
 
+      {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-12 space-y-12">
-        <div className="text-center p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            Ready to Convert Your PES Files?
+        {/* CTA */}
+        <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
+          <h2 className="text-xl font-bold uppercase tracking-wide mb-4">
+            READY TO CONVERT PES FILES?
           </h2>
           <Link
             href="/"
-            className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white font-semibold hover:shadow-xl transition-all"
+            className="inline-block px-8 py-3 border-2 border-black bg-black text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-100 shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1"
           >
-            Start Converting Now →
+            START_CONVERTING →
           </Link>
         </div>
 
-        <section className="prose prose-lg max-w-none">
-          <h2 className="text-3xl font-bold text-foreground mb-6">
-            Why Convert PES to DST?
+        {/* Main Content */}
+        <section className="space-y-8">
+          <h2 className="text-xl font-bold uppercase tracking-wider border-l-4 border-cyan-400 pl-4">
+            WHY_CONVERT: PES → DST
           </h2>
           <p className="text-foreground/80 leading-relaxed">
             Converting Brother PES files to DST format is essential when you need to use your designs on commercial embroidery machines or share them with professional embroidery services. DST is the universal standard in the embroidery industry, accepted by virtually all commercial machines including Tajima, Barudan, Happy, and SWF.
           </p>
 
-          <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">
-            Benefits of PES to DST Conversion
+          <h2 className="text-xl font-bold uppercase tracking-wider border-l-4 border-cyan-400 pl-4 mt-12">
+            CONVERSION_BENEFITS
           </h2>
           <ul className="space-y-3 text-foreground/80">
             <li>✓ <strong>Universal Compatibility:</strong> DST works on all commercial embroidery machines</li>
@@ -59,8 +63,8 @@ export default function PEStoDSTPage() {
             <li>✓ <strong>100% Free:</strong> No limits, no registration required</li>
           </ul>
 
-          <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">
-            When to Use PES to DST Conversion
+          <h2 className="text-xl font-bold uppercase tracking-wider border-l-4 border-cyan-400 pl-4 mt-12">
+            WHEN_TO_USE
           </h2>
           <ul className="space-y-3 text-foreground/80">
             <li>• Sending designs to commercial embroidery shops</li>
@@ -71,8 +75,8 @@ export default function PEStoDSTPage() {
             <li>• Preparing files for multi-head embroidery machines</li>
           </ul>
 
-          <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">
-            How PES and DST Files Differ
+          <h2 className="text-xl font-bold uppercase tracking-wider border-l-4 border-cyan-400 pl-4 mt-12">
+            FORMAT_DIFFERENCES
           </h2>
           <p className="text-foreground/80 leading-relaxed">
             <strong>PES Files:</strong> Brother's proprietary format includes color information, design metadata, and machine-specific settings. PES files are larger but contain more detailed information about the design.
@@ -81,47 +85,56 @@ export default function PEStoDSTPage() {
             <strong>DST Files:</strong> The industry-standard format contains only stitch coordinates and commands. DST files are smaller and more universally compatible but don't include color information (colors are set at the machine).
           </p>
 
-          <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">
-            Professional Embroidery Machines Supporting DST
+          <h2 className="text-xl font-bold uppercase tracking-wider border-l-4 border-cyan-400 pl-4 mt-12">
+            COMPATIBLE_MACHINES
           </h2>
           <p className="text-foreground/80 leading-relaxed">
             DST files work perfectly with: Tajima TMEX, Barudan BEAT, Happy HCD series, ZSK JCZA, SWF, Toyota ESP series, Brother commercial machines, Ricoma, and virtually all multi-needle industrial embroidery equipment.
           </p>
         </section>
 
-        <div className="text-center p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            Convert PES to DST Now - It's Free!
+        {/* Bottom CTA */}
+        <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
+          <h2 className="text-xl font-bold uppercase tracking-wide mb-4">
+            CONVERT PES TO DST NOW
           </h2>
+          <p className="uppercase text-sm tracking-wider mb-6 opacity-80">
+            FREE, FAST, AND SECURE. NO ACCOUNT NEEDED.
+          </p>
           <Link
             href="/"
-            className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white font-semibold hover:shadow-xl transition-all"
+            className="inline-block px-8 py-3 border-2 border-black bg-black text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-100 shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1"
           >
-            Go to Converter →
+            GO_TO_CONVERTER →
           </Link>
         </div>
 
+        {/* Related Conversions */}
         <section>
-          <h2 className="text-2xl font-bold text-foreground mb-6">
-            Related Conversions
+          <h2 className="text-xl font-bold uppercase tracking-wider mb-6 border-l-4 border-cyan-400 pl-4">
+            RELATED_CONVERSIONS
           </h2>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/dst-to-pes" className="p-6 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow">
-              <h3 className="font-semibold text-foreground text-lg">DST to PES</h3>
-              <p className="text-foreground/70 text-sm mt-2">Convert Tajima DST back to Brother PES format</p>
+            <Link href="/dst-to-pes" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
+              <h3 className="font-bold uppercase text-sm">DST → PES</h3>
+              <p className="text-xs mt-2 opacity-70">Convert Tajima DST back to Brother PES format</p>
             </Link>
-            <Link href="/jef-to-pes" className="p-6 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow">
-              <h3 className="font-semibold text-foreground text-lg">JEF to PES</h3>
-              <p className="text-foreground/70 text-sm mt-2">Convert Janome JEF to Brother PES</p>
+            <Link href="/jef-to-pes" className="p-4 border-2 border-black bg-white hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
+              <h3 className="font-bold uppercase text-sm">JEF → PES</h3>
+              <p className="text-xs mt-2 opacity-70">Convert Janome JEF to Brother PES</p>
             </Link>
           </div>
         </section>
       </div>
 
-      <footer className="border-t border-border bg-card/30 py-6 mt-12">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-sm text-foreground/60">
-            ThreadShifter - Free Online Embroidery File Converter
+      {/* Footer */}
+      <footer className="border-t-2 border-black bg-[#1a1a1a] text-white py-6 mt-12">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-xs uppercase tracking-wider">
+            THREADSHIFTER // FREE_CONVERTER
+          </p>
+          <p className="text-xs opacity-70 mt-1">
+            DST • PES • EXP • JEF • XXX • VP3 • U01 • PEC
           </p>
         </div>
       </footer>
