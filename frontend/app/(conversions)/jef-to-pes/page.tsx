@@ -33,13 +33,16 @@ export default function JEFtoPESPage() {
           {/* CTA */}
           <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
           <h2 className="text-xl font-bold uppercase tracking-wide mb-4">
-            CONVERT JANOME DESIGNS FOR BROTHER MACHINES
+            CONVERT JEF TO PES NOW
           </h2>
+          <p className="uppercase text-sm tracking-wider mb-6 opacity-80">
+            FREE, FAST, AND SECURE. NO ACCOUNT NEEDED.
+          </p>
           <Link
             href="/"
             className="inline-block px-8 py-3 border-2 border-black bg-black text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-100 shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1"
           >
-            START_CONVERTING →
+            GO_TO_CONVERTER →
           </Link>
         </div>
 

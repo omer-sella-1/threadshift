@@ -33,13 +33,16 @@ export default function DSTtoPESPage() {
           {/* CTA */}
           <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
           <h2 className="text-xl font-bold uppercase tracking-wide mb-4">
-            READY TO CONVERT DST FILES?
+            CONVERT DST TO PES NOW
           </h2>
+          <p className="uppercase text-sm tracking-wider mb-6 opacity-80">
+            FREE, FAST, AND SECURE. NO ACCOUNT NEEDED.
+          </p>
           <Link
             href="/"
             className="inline-block px-8 py-3 border-2 border-black bg-black text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-100 shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1"
           >
-            START_CONVERTING →
+            GO_TO_CONVERTER →
           </Link>
         </div>
 
@@ -128,18 +131,18 @@ export default function DSTtoPESPage() {
         </section>
 
         {/* Bottom CTA */}
-        <div className="text-center p-8 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            Convert Your DST Files to PES Now
+        <div className="text-center p-8 border-2 border-black bg-cyan-400 shadow-brutal">
+          <h2 className="text-xl font-bold uppercase tracking-wide mb-4">
+            CONVERT DST TO PES NOW
           </h2>
-          <p className="text-foreground/70 mb-6">
-            Free, fast, and secure. No account needed.
+          <p className="uppercase text-sm tracking-wider mb-6 opacity-80">
+            FREE, FAST, AND SECURE. NO ACCOUNT NEEDED.
           </p>
           <Link
             href="/"
-            className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white font-semibold hover:shadow-xl transition-all"
+            className="inline-block px-8 py-3 border-2 border-black bg-black text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-100 shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1"
           >
-            Go to Converter →
+            GO_TO_CONVERTER →
           </Link>
         </div>
 
