@@ -373,16 +373,19 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t-2 border-black bg-[#1a1a1a] text-white py-6">
+      <footer className="border-t-2 border-black bg-[#1a1a1a] text-white py-8">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-center md:text-left">
+          <div className="flex flex-col gap-6 text-center">
             <div>
-              <p className="text-xs uppercase tracking-wider">
-                SYSTEM_READY // COPYRIGHT 2025
+              <p className="text-sm uppercase tracking-wider mb-2">
+                MADE WITH ❤️ BY TREEHOUSE LABS
               </p>
-              <p className="text-xs opacity-70 mt-1">
-                NO_ACCOUNTS // NO_STORAGE // ZERO_RETENTION
+              <p className="text-xs opacity-70">
+                © 2025 TREEHOUSE LABS // ALL RIGHTS RESERVED
               </p>
+            </div>
+            <div className="text-xs opacity-70">
+              NO_ACCOUNTS // NO_STORAGE // ZERO_RETENTION
             </div>
             <div className="text-xs uppercase tracking-wider opacity-70">
               DST • PES • EXP • JEF • XXX • VP3 • U01 • PEC
