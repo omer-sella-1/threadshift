@@ -16,9 +16,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [targetFormat, setTargetFormat] = useState<string>("pes");
+  const [hoopSize, setHoopSize] = useState<string>("none");
   const [formats, setFormats] = useState<Record<string, string>>({});
   const [isConverting, setIsConverting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   // Fetch supported formats on mount
@@ -74,12 +76,16 @@ export default function Home() {
 
     setIsConverting(true);
     setError(null);
+    setWarning(null);
     setSuccess(false);
 
     try {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("target_format", targetFormat);
+      if (hoopSize !== "none") {
+        formData.append("hoop_size", hoopSize);
+      }
 
       const response = await fetch(`${API_URL}/api/convert`, {
         method: "POST",
@@ -91,12 +97,27 @@ export default function Home() {
         throw new Error(errorData.detail || "Conversion failed");
       }
 
+      // Check if response is a warning (JSON) or file (blob)
+      const contentType = response.headers.get("content-type");
+      if (contentType?.includes("application/json")) {
+        const warningData = await response.json();
+        setWarning(warningData.warning || warningData.detail);
+        setIsConverting(false);
+        return;
+      }
+
       // Get the blob and filename
       const blob = await response.blob();
       const contentDisposition = response.headers.get("Content-Disposition");
       const filename = contentDisposition
         ? contentDisposition.split("filename=")[1].replace(/"/g, "")
         : `converted.${targetFormat}`;
+
+      // Check for hoop warning in headers
+      const hoopWarning = response.headers.get("X-Conversion-Warning");
+      if (hoopWarning) {
+        setWarning(hoopWarning);
+      }
 
       // Download the file
       const url = window.URL.createObjectURL(blob);
@@ -202,6 +223,29 @@ export default function Home() {
             </div>
           )}
 
+          {/* Hoop Size Selector */}
+          {file && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <label className="block text-sm font-bold uppercase tracking-wider mb-4">
+                TARGET_HOOP: <span className="text-xs opacity-70">(OPTIONAL // AUTO_RESIZE)</span>
+              </label>
+              <select
+                value={hoopSize}
+                onChange={(e) => setHoopSize(e.target.value)}
+                disabled={isConverting}
+                className="w-full p-4 border-2 border-black bg-white font-bold uppercase text-sm shadow-brutal-sm hover:bg-[#f0ebe3] transition-colors duration-100 disabled:opacity-50"
+              >
+                <option value="none">NO LIMIT (DEFAULT)</option>
+                <option value="brother_4x4">BROTHER 4x4" (100x100mm)</option>
+                <option value="brother_5x7">BROTHER 5x7" (130x180mm)</option>
+                <option value="brother_6x10">BROTHER 6x10" (160x260mm)</option>
+              </select>
+              <p className="text-xs mt-2 opacity-70">
+                AUTO-SCALES DESIGN IF &lt; 10% OVERSIZED // WARNS IF TOO LARGE
+              </p>
+            </div>
+          )}
+
           {/* Terminal Output */}
           {file && isConverting && (
             <div className="border-2 border-black bg-[#f0ebe3] p-4 font-mono text-xs">
@@ -228,6 +272,19 @@ export default function Home() {
                   CONVERT &amp; DOWNLOAD
                 </div>
               </BrutalButton>
+            </div>
+          )}
+
+          {/* Warning Message */}
+          {warning && (
+            <div className="border-2 border-black bg-yellow-300 p-4">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-black flex-shrink-0" strokeWidth={2} />
+                <div>
+                  <p className="font-bold uppercase text-sm">WARNING:</p>
+                  <p className="text-sm mt-1">{warning}</p>
+                </div>
+              </div>
             </div>
           )}
 

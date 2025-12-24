@@ -13,6 +13,7 @@ from converter import (
     get_supported_formats,
     get_pattern_info,
     ConversionError,
+    ConversionWarning,
 )
 
 # Configure logging
@@ -66,16 +67,18 @@ async def get_formats():
 async def convert_file(
     file: UploadFile = File(...),
     target_format: str = Form(...),
+    hoop_size: str = Form(None),
 ):
     """
-    Convert an embroidery file to a different format.
+    Convert an embroidery file to a different format with smart features.
 
     Args:
         file: Uploaded embroidery file
         target_format: Target format extension (e.g., "pes", "dst")
+        hoop_size: Optional hoop size for auto-scaling (e.g., "brother_4x4")
 
     Returns:
-        Converted file as binary stream
+        Converted file as binary stream or JSON warning if too large
 
     Raises:
         HTTPException: 400 for invalid input, 413 for file too large
@@ -100,29 +103,47 @@ async def convert_file(
 
         logger.info(
             f"Converting {file.filename} ({len(file_data)} bytes) to {target_format}"
+            + (f" with hoop size {hoop_size}" if hoop_size else "")
         )
 
-        # Perform conversion
-        output_data, output_filename = convert_embroidery_file(
+        # Perform conversion with smart features
+        output_data, output_filename, warning = convert_embroidery_file(
             input_data=file_data,
             target_format=target_format,
-            input_filename=file.filename or "embroidery"
+            input_filename=file.filename or "embroidery",
+            hoop_size=hoop_size
         )
 
         logger.info(
             f"Successfully converted to {output_filename} ({len(output_data)} bytes)"
+            + (f" - Warning: {warning}" if warning else "")
         )
 
-        # Return file as download
+        # Return file as download with optional warning header
+        headers = {
+            "Content-Disposition": f'attachment; filename="{output_filename}"',
+            "Access-Control-Expose-Headers": "Content-Disposition",
+        }
+        if warning:
+            headers["X-Conversion-Warning"] = warning
+            headers["Access-Control-Expose-Headers"] = "Content-Disposition, X-Conversion-Warning"
+
         return Response(
             content=output_data,
             media_type="application/octet-stream",
-            headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
-                "Access-Control-Expose-Headers": "Content-Disposition",
-            }
+            headers=headers
         )
 
+    except ConversionWarning as e:
+        # Design is too large for hoop - return warning instead of file
+        logger.warning(f"Conversion warning: {str(e)}")
+        return JSONResponse(
+            status_code=200,
+            content={
+                "warning": str(e),
+                "type": "hoop_size_exceeded"
+            }
+        )
     except ConversionError as e:
         logger.error(f"Conversion error: {str(e)}")
         raise HTTPException(

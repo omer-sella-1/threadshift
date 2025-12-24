@@ -1,10 +1,11 @@
 """
 Core embroidery file conversion logic using pyembroidery.
 Handles in-memory processing for fast, stateless conversions.
+Includes smart features: hoop safety, PES v6 enforcement, color repair.
 """
 
 import io
-from typing import Tuple
+from typing import Tuple, Optional
 import pyembroidery
 
 
@@ -20,10 +21,129 @@ SUPPORTED_FORMATS = {
     "pec": ("Brother PEC", pyembroidery.read_pec, pyembroidery.write_pec),
 }
 
+# Hoop size definitions (in 0.1mm units - pyembroidery standard)
+HOOP_SIZES = {
+    "brother_4x4": (1000, 1000),  # 100x100mm
+    "brother_5x7": (1300, 1800),  # 130x180mm
+    "brother_6x10": (1600, 2600),  # 160x260mm
+}
+
+# Smart color palette for DST conversions (high contrast)
+SMART_COLORS = [
+    {"hex": "000000", "name": "Black"},
+    {"hex": "FF0000", "name": "Red"},
+    {"hex": "0000FF", "name": "Blue"},
+    {"hex": "FFD700", "name": "Gold"},
+    {"hex": "00FF00", "name": "Green"},
+    {"hex": "FF00FF", "name": "Magenta"},
+    {"hex": "00FFFF", "name": "Cyan"},
+    {"hex": "FFFFFF", "name": "White"},
+]
+
 
 class ConversionError(Exception):
     """Custom exception for conversion errors."""
     pass
+
+
+class ConversionWarning(Exception):
+    """Custom exception for conversion warnings (non-fatal)."""
+    pass
+
+
+def apply_smart_colors(pattern: pyembroidery.EmbPattern, source_format: str):
+    """
+    Apply smart color palette to DST files (which have no color data).
+
+    Args:
+        pattern: The embroidery pattern
+        source_format: Original file format
+    """
+    # Only apply to DST files (they have no color information)
+    if source_format != "dst":
+        return
+
+    # Check if threads need color repair (missing or default colors)
+    needs_repair = False
+    if not pattern.threadlist or len(pattern.threadlist) == 0:
+        needs_repair = True
+    else:
+        # Check if threads have valid RGB values
+        for thread in pattern.threadlist:
+            if not hasattr(thread, 'hex') or not thread.hex:
+                needs_repair = True
+                break
+
+    if needs_repair:
+        # Count color changes in the pattern
+        color_changes = 0
+        for stitch in pattern.stitches:
+            if stitch[2] == pyembroidery.COLOR_CHANGE:
+                color_changes += 1
+
+        num_colors = min(color_changes + 1, len(SMART_COLORS))
+
+        # Apply smart color palette
+        pattern.threadlist = []
+        for i in range(num_colors):
+            pattern.add_thread(SMART_COLORS[i])
+
+
+def check_hoop_size(pattern: pyembroidery.EmbPattern, hoop_size: str) -> Optional[str]:
+    """
+    Check if pattern fits in the specified hoop and scale if needed.
+
+    Args:
+        pattern: The embroidery pattern
+        hoop_size: Hoop size identifier (e.g., "brother_4x4")
+
+    Returns:
+        Warning message if design is too large, None otherwise
+
+    Raises:
+        ConversionWarning: If design is too large to scale safely
+    """
+    if not hoop_size or hoop_size == "none":
+        return None
+
+    if hoop_size not in HOOP_SIZES:
+        return None
+
+    max_width, max_height = HOOP_SIZES[hoop_size]
+
+    # Add 2mm safety margin (20 units in 0.1mm)
+    safe_width = max_width - 20
+    safe_height = max_height - 20
+
+    # Get pattern bounds
+    bounds = pattern.bounds()
+    pattern_width = bounds[2] - bounds[0]
+    pattern_height = bounds[3] - bounds[1]
+
+    # Check if design fits
+    if pattern_width <= safe_width and pattern_height <= safe_height:
+        return None  # Fits perfectly
+
+    # Calculate scale factor needed
+    width_scale = safe_width / pattern_width if pattern_width > 0 else 1.0
+    height_scale = safe_height / pattern_height if pattern_height > 0 else 1.0
+    scale_factor = min(width_scale, height_scale)
+
+    # Check if oversized by more than 10%
+    oversized_percent = ((1 / scale_factor) - 1) * 100
+
+    if oversized_percent > 10:
+        # Too large to safely scale
+        raise ConversionWarning(
+            f"Design is {oversized_percent:.1f}% too large for {hoop_size.replace('_', ' ').title()} hoop. "
+            f"Current size: {pattern_width/10:.1f}x{pattern_height/10:.1f}mm. "
+            f"Safe scaling limit exceeded (>10%). Please use a larger hoop or manually resize the design."
+        )
+
+    # Scale pattern to fit
+    pattern.scale(scale_factor)
+
+    return f"Design auto-scaled {oversized_percent:.1f}% to fit {hoop_size.replace('_', ' ').title()} hoop safely."
 
 
 def validate_format(format_ext: str) -> str:
@@ -55,21 +175,25 @@ def validate_format(format_ext: str) -> str:
 def convert_embroidery_file(
     input_data: bytes,
     target_format: str,
-    input_filename: str = "input"
-) -> Tuple[bytes, str]:
+    input_filename: str = "input",
+    hoop_size: Optional[str] = None
+) -> Tuple[bytes, str, Optional[str]]:
     """
     Convert an embroidery file from one format to another in-memory.
+    Includes smart features: hoop safety check, PES v6 enforcement, color repair.
 
     Args:
         input_data: Binary data of the input file
         target_format: Target format (e.g., "pes", "dst")
         input_filename: Original filename (used for format detection)
+        hoop_size: Optional hoop size for auto-scaling (e.g., "brother_4x4")
 
     Returns:
-        Tuple of (converted_file_bytes, output_filename)
+        Tuple of (converted_file_bytes, output_filename, warning_message)
 
     Raises:
         ConversionError: If conversion fails or formats are invalid
+        ConversionWarning: If design is too large for hoop (>10% oversized)
     """
     try:
         # Validate target format
@@ -110,14 +234,28 @@ def convert_embroidery_file(
                 "No stitch data found."
             )
 
+        # SMART FEATURE 1: Apply smart colors for DST → PES/JEF/etc. conversions
+        if input_ext and target_format in ["pes", "jef", "vp3"]:
+            apply_smart_colors(pattern, input_ext)
+
+        # SMART FEATURE 2: Hoop Safety Check
+        hoop_warning = None
+        if hoop_size:
+            hoop_warning = check_hoop_size(pattern, hoop_size)
+
         # Create output buffer
         output_buffer = io.BytesIO()
 
         # Get the write function for the target format
         _, _, write_func = SUPPORTED_FORMATS[target_format]
 
-        # Write to target format
-        write_func(pattern, output_buffer)
+        # SMART FEATURE 3: Force PES v6 for universal compatibility
+        if target_format == "pes":
+            # Write PES with version 6 (most compatible)
+            pyembroidery.write_pes(pattern, output_buffer, {"pes version": 6})
+        else:
+            # Write to target format normally
+            write_func(pattern, output_buffer)
 
         # Get the binary data
         output_data = output_buffer.getvalue()
@@ -126,8 +264,11 @@ def convert_embroidery_file(
         base_name = input_filename.rsplit('.', 1)[0] if '.' in input_filename else input_filename
         output_filename = f"{base_name}_converted.{target_format}"
 
-        return output_data, output_filename
+        return output_data, output_filename, hoop_warning
 
+    except ConversionWarning:
+        # Re-raise warnings (handled by API)
+        raise
     except ConversionError:
         # Re-raise our custom errors
         raise
