@@ -125,7 +125,6 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <Terminal className="w-6 h-6 text-black" strokeWidth={2} />
               <h1 className="text-2xl font-bold uppercase tracking-wider">THREAD_SHIFTER</h1>
-              <span className="text-xs border border-black px-2 py-1 bg-white">v1.0.0</span>
             </div>
             <ConversionCounter />
           </div>
@@ -133,7 +132,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <div className="border-b-2 border-black bg-white py-8">
+      <div className="border-b-2 border-black bg-[#faf8f5] py-8">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight">
             // CONVERT EMBROIDERY FILES
@@ -150,14 +149,14 @@ export default function Home() {
           {/* Converter Card */}
           <div className="border-2 border-black bg-white shadow-brutal-lg">
             {/* Card Header */}
-            <div className="bg-black text-white px-6 py-3 border-b-2 border-black">
+            <div className="bg-[#faf8f5] text-black px-6 py-3 border-b-2 border-black">
               <p className="text-sm font-bold uppercase tracking-wider">
-                TERMINAL // CONVERT_V1.0
+                TERMINAL // CONVERT
               </p>
             </div>
 
             {/* Card Body */}
-            <div className="p-8 space-y-8">
+            <div className="p-8 space-y-8 bg-[#faf8f5]">
           {/* Dropzone */}
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <Dropzone
@@ -181,7 +180,7 @@ export default function Home() {
 
           {/* Terminal Output */}
           {file && isConverting && (
-            <div className="border-2 border-black bg-white p-4 font-mono text-xs">
+            <div className="border-2 border-black bg-[#faf8f5] p-4 font-mono text-xs">
               <div className="space-y-1">
                 <p>&gt; READING_FILE... <span className="text-green-500">OK</span></p>
                 <p>&gt; DETECTING_FORMAT... <span className="text-cyan-400">{file.name.split('.').pop()?.toUpperCase()}</span></p>
@@ -250,7 +249,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t-2 border-black bg-black text-white py-6">
+      <footer className="border-t-2 border-black bg-[#1a1a1a] text-white py-6">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-center md:text-left">
             <div>
