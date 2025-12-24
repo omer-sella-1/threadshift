@@ -87,17 +87,17 @@ export default function SEOContent() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
       {/* About Section */}
-      <section className="prose prose-lg max-w-none">
-        <h2 className="text-3xl font-bold text-foreground mb-6">
-          Free Online Embroidery File Converter
+      <section>
+        <h2 className="text-2xl font-bold uppercase tracking-wider mb-6 border-l-4 border-cyan-400 pl-4">
+          ABOUT // SYSTEM
         </h2>
-        <p className="text-foreground/80 leading-relaxed">
+        <p className="text-sm leading-relaxed">
           ThreadShifter is the fastest and easiest way to convert embroidery files between different machine formats.
           Whether you need to convert DST to PES, JEF to EXP, or any other combination, our free online tool handles
           it instantly with no software installation required. Perfect for embroidery enthusiasts, small businesses,
           and professional embroiderers who need quick, reliable file conversions.
         </p>
-        <p className="text-foreground/80 leading-relaxed mt-4">
+        <p className="text-sm leading-relaxed mt-4">
           Our converter supports all major embroidery machine brands including Brother, Tajima, Janome, Melco, Singer,
           Pfaff, Barudan, and Husqvarna Viking. Simply upload your file, select your target format, and download your
           converted embroidery design in seconds. No registration, no fees, no hassle.
@@ -106,24 +106,24 @@ export default function SEOContent() {
 
       {/* Supported Formats */}
       <section>
-        <h2 className="text-3xl font-bold text-foreground mb-8">
-          Supported Embroidery File Formats
+        <h2 className="text-2xl font-bold uppercase tracking-wider mb-8 border-l-4 border-cyan-400 pl-4">
+          SUPPORTED_FORMATS
         </h2>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4">
           {formats.map((format) => (
             <div
               key={format.ext}
-              className="p-6 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow"
+              className="p-4 border-2 border-black bg-white hover:bg-[#f0ebe3] transition-colors duration-100 shadow-brutal-sm"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl font-bold text-primary-dark">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-xl font-bold">
                   .{format.ext}
                 </span>
-                <span className="text-sm font-medium text-foreground/70">
+                <span className="text-xs uppercase opacity-70">
                   {format.name}
                 </span>
               </div>
-              <p className="text-foreground/70 text-sm leading-relaxed">
+              <p className="text-xs leading-relaxed opacity-80">
                 {format.description}
               </p>
             </div>
@@ -133,31 +133,34 @@ export default function SEOContent() {
 
       {/* FAQ Section */}
       <section>
-        <h2 className="text-3xl font-bold text-foreground mb-8">
-          Frequently Asked Questions
+        <h2 className="text-2xl font-bold uppercase tracking-wider mb-8 border-l-4 border-cyan-400 pl-4">
+          FAQ // SYSTEM_INFO
         </h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-border rounded-xl overflow-hidden bg-card"
+              className="border-2 border-black bg-white shadow-brutal-sm overflow-hidden"
             >
               <button
                 onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-border/30 transition-colors"
+                className={`w-full flex items-center justify-between p-4 text-left transition-colors duration-100 ${
+                  openFAQ === index ? 'bg-cyan-400' : 'hover:bg-[#f0ebe3]'
+                }`}
               >
-                <h3 className="text-lg font-semibold text-foreground pr-4">
+                <h3 className="text-sm font-bold uppercase tracking-wide pr-4">
                   {faq.question}
                 </h3>
                 <ChevronDown
-                  className={`w-5 h-5 text-foreground/60 flex-shrink-0 transition-transform ${
+                  className={`w-5 h-5 flex-shrink-0 transition-transform ${
                     openFAQ === index ? "rotate-180" : ""
                   }`}
+                  strokeWidth={2}
                 />
               </button>
               {openFAQ === index && (
-                <div className="px-6 pb-6">
-                  <p className="text-foreground/70 leading-relaxed">
+                <div className="px-4 pb-4 bg-[#f0ebe3] border-t-2 border-black">
+                  <p className="text-sm leading-relaxed mt-3">
                     {faq.answer}
                   </p>
                 </div>

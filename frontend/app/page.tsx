@@ -39,14 +39,37 @@ export default function Home() {
       );
   }, []);
 
+  const validateFile = (file: File): boolean => {
+    const validExtensions = ['dst', 'pes', 'exp', 'jef', 'xxx', 'vp3', 'u01', 'pec'];
+    const fileName = file.name.toLowerCase();
+    const extension = fileName.split('.').pop();
+
+    if (!extension || !validExtensions.includes(extension)) {
+      setError(`Invalid file format. Supported formats: ${validExtensions.map(ext => ext.toUpperCase()).join(', ')}`);
+      return false;
+    }
+
+    return true;
+  };
+
   const handleFileSelect = (selectedFile: File) => {
-    setFile(selectedFile);
     setError(null);
     setSuccess(false);
+
+    if (validateFile(selectedFile)) {
+      setFile(selectedFile);
+    } else {
+      setFile(null);
+    }
   };
 
   const handleConvert = async () => {
     if (!file) return;
+
+    // Validate file again before conversion
+    if (!validateFile(file)) {
+      return;
+    }
 
     setIsConverting(true);
     setError(null);
@@ -132,7 +155,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <div className="border-b-2 border-black bg-[#faf8f5] py-8">
+      <div className="border-b-2 border-black bg-[#f0ebe3] py-8">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight">
             // CONVERT EMBROIDERY FILES
@@ -149,14 +172,14 @@ export default function Home() {
           {/* Converter Card */}
           <div className="border-2 border-black bg-white shadow-brutal-lg">
             {/* Card Header */}
-            <div className="bg-[#faf8f5] text-black px-6 py-3 border-b-2 border-black">
+            <div className="bg-cyan-400 text-black px-6 py-3 border-b-2 border-black">
               <p className="text-sm font-bold uppercase tracking-wider">
                 TERMINAL // CONVERT
               </p>
             </div>
 
             {/* Card Body */}
-            <div className="p-8 space-y-8 bg-[#faf8f5]">
+            <div className="p-8 space-y-8 bg-[#f0ebe3]">
           {/* Dropzone */}
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <Dropzone
@@ -180,7 +203,7 @@ export default function Home() {
 
           {/* Terminal Output */}
           {file && isConverting && (
-            <div className="border-2 border-black bg-[#faf8f5] p-4 font-mono text-xs">
+            <div className="border-2 border-black bg-[#f0ebe3] p-4 font-mono text-xs">
               <div className="space-y-1">
                 <p>&gt; READING_FILE... <span className="text-green-500">OK</span></p>
                 <p>&gt; DETECTING_FORMAT... <span className="text-cyan-400">{file.name.split('.').pop()?.toUpperCase()}</span></p>
