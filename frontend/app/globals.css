@@ -1,34 +1,51 @@
 @import "tailwindcss";
 
 :root {
-  /* Pastel crafty colors - light mode */
-  --background: #fef9f3;
-  --foreground: #2d2d2d;
-  --primary: #e8b4b4;
-  --primary-dark: #d89b9b;
-  --secondary: #b4d4e8;
-  --accent: #d4b4e8;
-  --success: #b4e8d4;
-  --border: #e8d4c4;
+  /* Neo-Brutalist Raw Engineering colors */
+  --background: #ffffff;
+  --foreground: #000000;
+  --primary: #00ffff;
+  --border: #000000;
   --card: #ffffff;
+  --error: #ef4444;
+  --success: #00ff00;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-success: var(--success);
   --color-border: var(--border);
   --color-card: var(--card);
+  --color-error: var(--error);
+  --color-success: var(--success);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: white;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 16px 16px;
+  color: black;
+  font-family: 'Space Mono', monospace;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Hard shadow utility */
+.shadow-brutal {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.shadow-brutal-lg {
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.shadow-brutal-sm {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+}
+
+/* Button press effect */
+.active\:shadow-none:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
 }

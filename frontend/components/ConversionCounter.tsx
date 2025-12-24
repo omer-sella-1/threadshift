@@ -38,18 +38,18 @@ export default function ConversionCounter() {
   };
 
   return (
-    <div className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30">
-      <TrendingUp className="w-5 h-5 text-primary-dark" />
+    <div className="flex items-center justify-center gap-3 px-4 py-2 border-2 border-black bg-white shadow-brutal-sm">
+      <TrendingUp className="w-4 h-4 text-black" strokeWidth={2} />
       <div className="flex items-baseline gap-2">
         <span
-          className={`text-2xl font-bold text-primary-dark transition-all ${
-            isAnimating ? 'scale-110' : 'scale-100'
+          className={`text-xl font-bold transition-all ${
+            isAnimating ? 'text-cyan-400' : 'text-black'
           }`}
         >
           {formatNumber(count)}
         </span>
-        <span className="text-sm text-foreground/70">
-          files converted
+        <span className="text-xs uppercase tracking-wide opacity-70">
+          CONVERSIONS
         </span>
       </div>
     </div>

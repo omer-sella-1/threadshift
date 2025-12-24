@@ -63,15 +63,11 @@ export default function Dropzone({ onFileSelect, selectedFile, disabled }: Dropz
       <label
         htmlFor="file-upload"
         className={`
-          relative block w-full rounded-2xl border-4 border-dashed
-          transition-all duration-200 cursor-pointer overflow-hidden
-          ${
-            isDragging
-              ? "border-primary-dark bg-primary/10 scale-[1.02]"
-              : "border-border hover:border-primary bg-card"
-          }
-          ${disabled ? "opacity-50 cursor-not-allowed" : ""}
-          ${selectedFile ? "border-success bg-success/5" : ""}
+          relative block w-full border-2 border-dashed border-black
+          transition-all duration-100 cursor-pointer
+          ${isDragging ? "bg-cyan-400" : "bg-white"}
+          ${disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-cyan-400/10"}
+          ${selectedFile ? "bg-green-100" : ""}
         `}
         onDragEnter={handleDragIn}
         onDragLeave={handleDragOut}
@@ -90,36 +86,39 @@ export default function Dropzone({ onFileSelect, selectedFile, disabled }: Dropz
         <div className="p-12 text-center">
           {selectedFile ? (
             <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center">
-                <File className="w-8 h-8 text-success" />
+              <div className="w-16 h-16 border-2 border-black bg-green-300 flex items-center justify-center">
+                <File className="w-8 h-8 text-black" strokeWidth={2} />
               </div>
               <div>
-                <p className="text-lg font-medium text-foreground">
+                <p className="text-base font-bold uppercase tracking-wide">
+                  FILE_LOADED:
+                </p>
+                <p className="text-sm mt-1 font-mono">
                   {selectedFile.name}
                 </p>
-                <p className="text-sm text-foreground/60 mt-1">
-                  {(selectedFile.size / 1024).toFixed(1)} KB
+                <p className="text-xs mt-1 opacity-70">
+                  SIZE: {(selectedFile.size / 1024).toFixed(1)} KB
                 </p>
               </div>
-              <p className="text-sm text-foreground/50">
-                Click or drag to change file
+              <p className="text-xs uppercase opacity-50">
+                [ CLICK TO CHANGE ]
               </p>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
-                <Upload className="w-10 h-10 text-primary-dark" />
+              <div className="w-20 h-20 border-2 border-black bg-white flex items-center justify-center">
+                <Upload className="w-10 h-10 text-black" strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-semibold text-foreground">
-                  Drop your embroidery file here
+                <p className="text-lg font-bold uppercase tracking-wide">
+                  DROP_FILE_HERE
                 </p>
-                <p className="text-foreground/60 mt-2">
-                  or click to browse
+                <p className="text-sm mt-2 opacity-70">
+                  [ OR CLICK TO BROWSE ]
                 </p>
               </div>
-              <div className="mt-4 px-6 py-2 rounded-full bg-border/30 text-sm text-foreground/70">
-                DST, PES, EXP, JEF, XXX, VP3, U01, PEC
+              <div className="mt-4 border border-black px-4 py-2 bg-white text-xs uppercase">
+                .DST .PES .EXP .JEF .XXX .VP3 .U01 .PEC
               </div>
             </div>
           )}

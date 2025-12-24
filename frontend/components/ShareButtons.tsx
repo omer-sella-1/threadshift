@@ -30,48 +30,50 @@ export default function ShareButtons() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <p className="text-sm text-foreground/70">
-        Love ThreadShifter? Share it with others!
+    <div className="flex flex-col items-center gap-6">
+      <p className="text-xs uppercase tracking-wider font-bold">
+        [ SHARE_UTILITY ]
       </p>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <button
           onClick={() => openShare('facebook')}
-          className="p-3 rounded-full bg-card border border-border hover:bg-primary/10 hover:border-primary transition-all"
+          className="p-3 border-2 border-black bg-white hover:bg-cyan-400 transition-all duration-100 shadow-brutal-sm active:shadow-none active:translate-x-1 active:translate-y-1"
           aria-label="Share on Facebook"
         >
-          <Facebook className="w-5 h-5 text-foreground" />
+          <Facebook className="w-5 h-5 text-black" strokeWidth={2} />
         </button>
         <button
           onClick={() => openShare('twitter')}
-          className="p-3 rounded-full bg-card border border-border hover:bg-primary/10 hover:border-primary transition-all"
+          className="p-3 border-2 border-black bg-white hover:bg-cyan-400 transition-all duration-100 shadow-brutal-sm active:shadow-none active:translate-x-1 active:translate-y-1"
           aria-label="Share on Twitter"
         >
-          <Twitter className="w-5 h-5 text-foreground" />
+          <Twitter className="w-5 h-5 text-black" strokeWidth={2} />
         </button>
         <button
           onClick={() => openShare('linkedin')}
-          className="p-3 rounded-full bg-card border border-border hover:bg-primary/10 hover:border-primary transition-all"
+          className="p-3 border-2 border-black bg-white hover:bg-cyan-400 transition-all duration-100 shadow-brutal-sm active:shadow-none active:translate-x-1 active:translate-y-1"
           aria-label="Share on LinkedIn"
         >
-          <Linkedin className="w-5 h-5 text-foreground" />
+          <Linkedin className="w-5 h-5 text-black" strokeWidth={2} />
         </button>
         <button
           onClick={copyLink}
-          className="p-3 rounded-full bg-card border border-border hover:bg-primary/10 hover:border-primary transition-all relative"
+          className="p-3 border-2 border-black bg-white hover:bg-cyan-400 transition-all duration-100 shadow-brutal-sm active:shadow-none active:translate-x-1 active:translate-y-1"
           aria-label="Copy link"
         >
           {copied ? (
-            <Check className="w-5 h-5 text-success" />
+            <Check className="w-5 h-5 text-black" strokeWidth={2} />
           ) : (
-            <Link2 className="w-5 h-5 text-foreground" />
+            <Link2 className="w-5 h-5 text-black" strokeWidth={2} />
           )}
         </button>
       </div>
       {copied && (
-        <p className="text-xs text-success animate-in fade-in">
-          Link copied to clipboard!
-        </p>
+        <div className="border-2 border-black bg-green-400 px-4 py-2">
+          <p className="text-xs uppercase font-bold">
+            LINK_COPIED
+          </p>
+        </div>
       )}
     </div>
   );
