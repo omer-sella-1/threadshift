@@ -360,47 +360,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Free Alternatives Section */}
-      <div className="border-t-2 border-black bg-white py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-xl font-bold uppercase tracking-wider mb-8 border-l-4 border-cyan-400 pl-4">
-            FREE_ALTERNATIVE_TO_EXPENSIVE_SOFTWARE
-          </h2>
-          <p className="text-sm mb-8 opacity-80">
-            Save thousands on embroidery software. If you only need file conversion, ThreadShifter is completely free.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Link href="/wilcom-alternative" className="border-2 border-black bg-[#f0ebe3] p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
-              <div className="text-center mb-4">
-                <p className="text-3xl font-bold mb-2">$1,995</p>
-                <p className="text-xs uppercase tracking-wider opacity-70">WILCOM COSTS</p>
-              </div>
-              <h3 className="font-bold uppercase text-sm mb-2">WILCOM ALTERNATIVE</h3>
-              <p className="text-xs opacity-70 mb-4">Free file conversion vs $1,995 software</p>
-              <p className="text-xs font-bold uppercase">READ COMPARISON →</p>
-            </Link>
-            <Link href="/pe-design-alternative" className="border-2 border-black bg-[#f0ebe3] p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
-              <div className="text-center mb-4">
-                <p className="text-3xl font-bold mb-2">$1,299</p>
-                <p className="text-xs uppercase tracking-wider opacity-70">PE-DESIGN COSTS</p>
-              </div>
-              <h3 className="font-bold uppercase text-sm mb-2">PE-DESIGN ALTERNATIVE</h3>
-              <p className="text-xs opacity-70 mb-4">Save money on Brother software</p>
-              <p className="text-xs font-bold uppercase">READ COMPARISON →</p>
-            </Link>
-            <Link href="/hatch-alternative" className="border-2 border-black bg-[#f0ebe3] p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
-              <div className="text-center mb-4">
-                <p className="text-3xl font-bold mb-2">$399/yr</p>
-                <p className="text-xs uppercase tracking-wider opacity-70">HATCH SUBSCRIPTION</p>
-              </div>
-              <h3 className="font-bold uppercase text-sm mb-2">HATCH ALTERNATIVE</h3>
-              <p className="text-xs opacity-70 mb-4">No subscription fees, free forever</p>
-              <p className="text-xs font-bold uppercase">READ COMPARISON →</p>
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Social Share Section */}
       <div className="border-t-2 border-black bg-white py-12">
         <div className="max-w-4xl mx-auto px-6">
@@ -411,6 +370,47 @@ export default function Home() {
       {/* SEO Content - FAQ and Format Info */}
       <div className="border-t-2 border-black bg-white">
         <SEOContent />
+      </div>
+
+      {/* Free Alternatives Section - With Dot Grid */}
+      <div className="border-t-2 border-black bg-white bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-xl font-bold uppercase tracking-wider mb-4 border-l-4 border-cyan-400 pl-4">
+            FREE_ALTERNATIVE_TO_EXPENSIVE_SOFTWARE
+          </h2>
+          <p className="text-sm mb-8 opacity-80">
+            Save thousands on embroidery software. If you only need file conversion, ThreadShifter is completely free.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link href="/wilcom-alternative" className="border-2 border-black bg-white p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
+              <div className="text-center mb-4">
+                <p className="text-3xl font-bold mb-2">$1,995</p>
+                <p className="text-xs uppercase tracking-wider opacity-70">WILCOM COSTS</p>
+              </div>
+              <h3 className="font-bold uppercase text-sm mb-2">WILCOM ALTERNATIVE</h3>
+              <p className="text-xs opacity-70 mb-4">Free file conversion vs $1,995 software</p>
+              <p className="text-xs font-bold uppercase">READ COMPARISON →</p>
+            </Link>
+            <Link href="/pe-design-alternative" className="border-2 border-black bg-white p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
+              <div className="text-center mb-4">
+                <p className="text-3xl font-bold mb-2">$1,299</p>
+                <p className="text-xs uppercase tracking-wider opacity-70">PE-DESIGN COSTS</p>
+              </div>
+              <h3 className="font-bold uppercase text-sm mb-2">PE-DESIGN ALTERNATIVE</h3>
+              <p className="text-xs opacity-70 mb-4">Save money on Brother software</p>
+              <p className="text-xs font-bold uppercase">READ COMPARISON →</p>
+            </Link>
+            <Link href="/hatch-alternative" className="border-2 border-black bg-white p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
+              <div className="text-center mb-4">
+                <p className="text-3xl font-bold mb-2">$399/yr</p>
+                <p className="text-xs uppercase tracking-wider opacity-70">HATCH SUBSCRIPTION</p>
+              </div>
+              <h3 className="font-bold uppercase text-sm mb-2">HATCH ALTERNATIVE</h3>
+              <p className="text-xs opacity-70 mb-4">No subscription fees, free forever</p>
+              <p className="text-xs font-bold uppercase">READ COMPARISON →</p>
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Footer */}
