@@ -375,12 +375,15 @@ export default function Home() {
       {/* Free Alternatives Section - With Dot Grid */}
       <div className="border-t-2 border-black bg-white bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-xl font-bold uppercase tracking-wider mb-4 border-l-4 border-cyan-400 pl-4">
-            FREE_ALTERNATIVE_TO_EXPENSIVE_SOFTWARE
-          </h2>
-          <p className="text-sm mb-8 opacity-80">
-            Save thousands on embroidery software. If you only need file conversion, ThreadShifter is completely free.
-          </p>
+          {/* Header with readable background */}
+          <div className="bg-white border-2 border-black p-6 mb-8 shadow-brutal-sm">
+            <h2 className="text-xl font-bold uppercase tracking-wider mb-3 border-l-4 border-cyan-400 pl-4">
+              FREE_ALTERNATIVE_TO_EXPENSIVE_SOFTWARE
+            </h2>
+            <p className="text-sm opacity-80">
+              Save thousands on embroidery software. If you only need file conversion, ThreadShifter is completely free.
+            </p>
+          </div>
           <div className="grid md:grid-cols-3 gap-6">
             <Link href="/wilcom-alternative" className="border-2 border-black bg-white p-6 hover:bg-cyan-400 transition-colors duration-100 shadow-brutal-sm">
               <div className="text-center mb-4">
