@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background -->
+  <rect width="32" height="32" fill="white"/>
+
+  <!-- Black border (brutal style) -->
+  <rect x="0" y="0" width="32" height="32" stroke="black" stroke-width="2" fill="none"/>
+
+  <!-- Terminal prompt >_ in monospace style -->
+  <text x="6" y="22" font-family="monospace" font-size="18" font-weight="bold" fill="black">&gt;_</text>
+</svg>
