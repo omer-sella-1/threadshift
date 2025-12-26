@@ -40,6 +40,13 @@ export default function Home() {
           pec: "Brother PEC",
         })
       );
+
+    // Test GA4 on page load
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'page_view_converter', {
+        page_title: 'ThreadShifter Home',
+      });
+    }
   }, []);
 
   const validateFile = (file: File): boolean => {
@@ -141,12 +148,21 @@ export default function Home() {
 
       // Track conversion event in Google Analytics
       if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'conversion', {
-          event_category: 'Embroidery Conversion',
-          event_label: `${file.name.split('.').pop()?.toUpperCase()} to ${targetFormat.toUpperCase()}`,
+        // Track as custom 'file_converted' event
+        (window as any).gtag('event', 'file_converted', {
+          event_category: 'Conversion',
+          event_label: `${file.name.split('.').pop()?.toUpperCase()}_to_${targetFormat.toUpperCase()}`,
           source_format: file.name.split('.').pop() || 'unknown',
           target_format: targetFormat,
           file_size_kb: Math.round(file.size / 1024),
+          value: 1, // Track conversion count
+        });
+
+        // Also track as GA4 conversion event (for goals)
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'G-TNTNTS4VV2',
+          event_category: 'File Conversion',
+          transaction_id: Date.now().toString(), // Unique per conversion
         });
       }
 
